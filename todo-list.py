@@ -1,5 +1,22 @@
 tasks = []
 
+class task:
+    def __init__(self, description, status):
+        self.status = status
+        self.description = description
+
+    def completed(self):
+        taskNum = int(input('Enter the task number to mark as completed:'))
+        print('Task: '+tasks[taskNum-1]+' marked as completed.')
+        tasks[taskNum-1] = "[Completed] " + tasks[taskNum-1]
+
+    def remove(self):
+        taskNum = int(input('Enter the task number to remove:'))
+        task = tasks[taskNum-1]
+        tasks.remove(task)
+        print('Task: '+task+' removed successfully.')
+
+
 while True:
     print('''Welcome to the To-Do List Application!
         1. Add task
@@ -10,13 +27,12 @@ while True:
 
     choice = int(input('Enter your choice:'))
     if (choice == 1):
-        task = input('Enter the task: ')
-        tasks.append(task)
-        print('Task:' + task + 'added successfully.')
+        tsk = input('Enter the task: ')
+        task1 = task(tsk, 'incompleted')
+        tasks.append(task1.description)
+        print('Task: ' + task1.description + ' added successfully.')
     elif (choice == 2):
-        taskNum = int(input('Enter the task number to mark as completed:'))
-        print('Task: '+tasks[taskNum-1]+' marked as completed.')
-        tasks[taskNum-1] = "[Completed]" + tasks[taskNum-1]
+        task1.completed()
     elif (choice == 3):
         print('Tasks:')
         index = 1
@@ -24,10 +40,7 @@ while True:
             print(str(index) +'. '+ task)
             index += 1
     elif (choice == 4): 
-        taskNum = int(input('Enter the task number to remove:'))
-        task = tasks[taskNum-1]
-        tasks.remove(task)
-        print('Task: '+task+' removed successfully.')
+        task1.remove()
     elif (choice == 5):
         print("Goodbye! Have a productive day!")
         quit()
